@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twitter1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <% if !current_user %>
+	<%= link_to "Sign in", "/users/sign_in" %>
+	 <% else %>
+   Has iniciado sesión como <%= link_to current_user.name, edit_user_registration_path %>
+   <img width="75" src="<% current_user.image.url %>"/>
+	<%= link_to destroy_user_session_path, :method => :delete  do %>Sign out<%end%>
+  
+<%end%>
+
+    <%= yield %>
+  </body>
+</html>
